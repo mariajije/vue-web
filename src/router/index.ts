@@ -11,22 +11,22 @@ export const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'Home',
+      name: 'home',
       component: Home
     },
     {
       path: '/batman',
-      name: 'Batman',
+      name: 'batman',
       component: Batman
     },
     {
       path: '/catwoman',
-      name: 'Catwoman',
+      name: 'catwoman',
       component: Catwoman
     },
     {
       path: '/questions',
-      name: 'Questions',
+      name: 'questions',
       component: Questions
     },
     {
