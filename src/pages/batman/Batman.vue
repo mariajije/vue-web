@@ -209,12 +209,15 @@ const scrollToSection = (sectionId: string) => {
   </div>
 </template>
 
+
+
 <style scoped>
 .batman {
   font-family: Arial, Helvetica, sans-serif;
   color: #171717;
 }
 
+/* MENÚ DE NAVEGACIÓN */
 .extra-nav {
   display: flex;
   align-items: center;
@@ -244,15 +247,16 @@ const scrollToSection = (sectionId: string) => {
   cursor: pointer;
 }
 
+/* PORTADA */
 .titulus {
   position: relative;
 }
 
 .titulus-img {
+  min-height: 100vh;
+  background-image: url('/imagines/batman/batman.jpg');
   background-size: cover;
   background-position: center;
-  background-image: url('/imagines/batman/batman.jpg');
-  min-height: 100vh;
 }
 
 .titulus > h1 {
@@ -278,56 +282,158 @@ const scrollToSection = (sectionId: string) => {
   color: white;
   pointer-events: none;
   font-family: batman, Arial, sans-serif;
-  display: none;
 }
 
-.vehiculis-section,
+/* SECCIÓN DE VEHÍCULOS */
+.vehiculis-section {
+  width: 100%;
+  padding: 4rem 1rem;
+  box-sizing: border-box;
+  scroll-margin-top: 5rem;
+}
+
+
+#vehiculis {
+  width: 85%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+/* TÍTULO */
+.vehiculis-titulus {
+  width: 100%;
+  min-height: 5.5rem;
+  box-sizing: border-box;
+  font-size: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+}
+
+.vehiculis-titulus h1 {
+  margin: 0;
+}
+
+/* CONTENEDOR DE LAS TARJETAS */
+.vehiculis-arca {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* TARJETAS HORIZONTALES */
+
+.item {
+  width: 100%;
+  max-width: none;
+  min-height: 240px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  overflow: hidden;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+
+/* COLORES Y ORDEN */
+
+/* Primera tarjeta: texto a la izquierda, imagen a la derecha */
+.unus .notitia {
+  order: 1;
+}
+
+.unus img {
+  order: 2;
+}
+
+/* Segunda tarjeta: imagen a la izquierda, texto a la derecha */
+.duo .notitia {
+  order: 2;
+}
+
+.duo img {
+  order: 1;
+}
+
+/* Tercera tarjeta: texto a la izquierda, imagen a la derecha */
+.tribus .notitia {
+  order: 1;
+}
+
+.tribus img {
+  order: 2;
+}
+
+
+/* TEXTO A LA IZQUIERDA */
+
+.notitia {
+  width: 50%;
+  flex: 0 0 50%;
+  min-width: 0;
+  padding: 1rem 1.5rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+}
+
+.notitia h2 {
+  width: 100%;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+}
+
+.notitia p {
+  width: 100%;
+  margin: 0;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+}
+
+.notitia {
+  width: 50%;
+  flex: 0 0 50%;
+}
+
+.item img {
+  display: block;
+  width: 50%;
+  flex: 0 0 50%;
+  min-width: 0;
+  min-height: 240px;
+  align-self: stretch;
+  object-fit: cover;
+}
+
+/* GALERÍA */
 .imagenes-section,
 .contacto-section {
   padding: 4rem 2rem;
   scroll-margin-top: 5rem;
 }
 
-.vehiculis-titulus,
 .imagenes-section > h1,
 .contacto-section > h1 {
   text-align: center;
   margin-bottom: 2rem;
-}
-
-.vehiculis-arca {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-}
-
-.item {
-  flex: 1 1 280px;
-  max-width: 400px;
-  overflow: hidden;
-  border-radius: 0.75rem;
-  background-color: #f3f3f3;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-}
-
-.item img {
-  display: block;
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-}
-
-.notitia {
-  padding: 1.25rem;
-}
-
-.notitia h2 {
-  margin-top: 0;
-}
-
-.notitia p {
-  line-height: 1.6;
 }
 
 .imagenes-arca {
@@ -343,6 +449,7 @@ const scrollToSection = (sectionId: string) => {
   border-radius: 0.75rem;
 }
 
+/* CONTACTO */
 .contacto-section {
   text-align: center;
   background-color: #171717;
@@ -363,6 +470,7 @@ const scrollToSection = (sectionId: string) => {
   background-color: #e00030;
 }
 
+/* PORTADA EN PANTALLAS GRANDES */
 @media (min-width: 768px) {
   .titulus > p {
     display: block;
@@ -373,6 +481,7 @@ const scrollToSection = (sectionId: string) => {
   }
 }
 
+/* MÓVILES */
 @media (max-width: 600px) {
   .extra-nav {
     gap: 0.5rem;
@@ -383,53 +492,82 @@ const scrollToSection = (sectionId: string) => {
     font-size: 3rem;
   }
 
-  .vehiculis-section,
+  .titulus > p {
+    font-size: 1.2rem;
+    padding: 0 1rem;
+    box-sizing: border-box;
+  }
+
+  .vehiculis-section {
+    padding: 3rem 0.5rem;
+  }
+
+  .item {
+    min-height: 180px;
+  }
+
+  .notitia {
+    padding: 0.5rem;
+  }
+
+  .notitia h2 {
+    font-size: 1.3rem;
+  }
+
+  @media (max-width: 640px) {
+    #vehiculis {
+      max-width: 576px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    #vehiculis {
+      max-width: 900px;
+    }
+  }
+
+  .notitia p {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .notitia > small {
+    font-size: 0.7rem;
+  }
+
+  .item img {
+    min-height: 180px;
+  }
+
   .imagenes-section,
   .contacto-section {
     padding: 3rem 1rem;
+
+    .unus 
+    >img {
+      order: -1;
+    }
+
+    @media (max-width: 1024px) {
+      #vehiculis {
+        max-width: 1280px;
+      }
+    }
+
+    .item {
+      flex-direction: column;
+      height: 160px;
+    }
+
+    .vehiculis-arca {
+      flex-direction: row;
+    }
+    .notitia {
+      width: 90%;
+    }
+
   }
 }
-
-#vehiculis {
-  max-width: 510px;
-  margin: 0 auto;
-  padding: 4rem 0;
-}
-
-.vehiculis-titulus {
-  height: 5.5rem; /* 88px */
-  font-size: 2rem;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-}
-
-.item {
-  padding: 1.5rem 0;
-  height: 500px;
-}
-
-.unus {
-  background-color: rgba(220, 220, 220, 0.2) ; 
-}
-
-.duo {
-  background-color: rgba(220, 220, 220, 0.8);
-}
-
-.tribus {
-  background-color: rgba(220, 220, 220, 0.8);
-}
- 
-.notitia > small {
-  font-weight: bold;
-  padding: 1rem;
-}
- 
-.notitia > h2 {
- font-size: 1.7rem; 
- font-weight: 600;
- color: rgba(0, 0, 0, 0.7);
- padding-bottom: 1rem;
-} 
 </style>
-```
+
+
