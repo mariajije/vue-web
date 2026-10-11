@@ -5,27 +5,34 @@ import Button from '@/components/ui/button/Button.vue'
 </script>
 
 <template>
-  <div class="fondo-home">
-    <h1>
+  <div class="bg-pink-200 h-screen text-red-950 font-sans text-center flex flex-col items-center justify-center gap-12 fixed w-screen overflow-hidden">
+
+    <img class="absolute opacity-20" src="/imagines/tonitrui.png"/>
+
+    <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold pb-5 md:pb-20 z-10 transition-all">
       <span>Web</span> Design and
       <br />
       Interactive <span>Apps</span>
     </h1>
 
-    <div class="buttons">
-      <Button variant="default" as-child>
+    <p class="text-lg md:text-2xl transition-all">
+    Aprendiendo a crear aplicaciones web
+    </p>
+
+    <div class="scale-z-10">
+      <Button class="bg-red-950 text-white hover:bg-red-800 md:py-5 md:px-6 md:text-lg mr-2">
         <RouterLink to="/batman">Batman</RouterLink>
       </Button>
 
-      <Button variant="default" as-child>
+      <Button class="bg-red-950 text-white hover:bg-red-800 md:py-5 md:px-6 md:text-lg mr-2">
         <RouterLink to="/catwoman">Catwoman</RouterLink>
       </Button>
 
-      <Button variant="default" as-child>
+      <Button class="bg-red-950 text-white hover:bg-red-800 md:py-5 md:px-6 md:text-lg mr-2">
         <RouterLink to="/question">Yes or no</RouterLink>
       </Button>
 
-      <Button variant="default" as-child>
+      <Button class="bg-red-950 text-white hover:bg-red-800 md:py-5 md:px-6 md:text-lg mr-2">
         <a href="https://www.upv.es" target="_blank" rel="noopener noreferrer">
           UPV
         </a>
@@ -34,46 +41,3 @@ import Button from '@/components/ui/button/Button.vue'
   </div>
 </template>
 
-<style scoped>
-.fondo-home {
-  background-color: rgb(255, 177, 216);
-  min-height: 100vh;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 3rem 2rem;
-  color: rgb(160, 0, 99);
-  text-align: center;
-}
-
-.fondo-home h1 {
-  margin: 0 0 2rem;
-  font-size: 3rem;
-  font-weight: 700;
-}
-
-.fondo-home h1 span {
-  color: rgb(220, 50, 140);
-}
-
-.buttons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.buttons > * {
-  padding: 1rem;
-  font-size: 1.2rem;
-  border-radius: 0.5rem;
-  background-color: rgba(143, 226, 252, 0.842);
-  color: rgb(20, 70, 85);
-}
-
-.buttons > *:hover {
-  background-color: rgba(71, 139, 160, 0.842);
-  color: rgb(18, 62, 75);
-}
-</style>
-```

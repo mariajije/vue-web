@@ -19,6 +19,32 @@ body{
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-border: var(--border);
+  /* Brand colors */
+ --color-simpsons-yellow: #ffde00;
+ --color-simpsons-red: #ee3133;
+ --color-domus-cyan: #18bcf6;
+ --color-domus-navy: #151934;
+ --color-domus-navy-input: #1f233e;
+ --color-brand-purple: #6a5acd;
+- -color-brand-purple-dark: #584bab;
+
+  /* Dark reds & burgundy */
+  --color-burgundy: #800020;
+  --color-wine: #722F37;
+  --color-dark-red: #5C1018;
+  --color-berry: #9E3D53;
+
+  /* Pastel pinks */
+  --color-pink-pastel: #F8D7E3;
+  --color-pink-soft: #F4C2D7;
+  --color-pink-blush: #FBE9EF;
+  --color-pink-dusty: #D8A0AE;
+
+  /* Neutral tones */
+  --color-cream: #FFF7F5;
+  --color-rose-gray: #A68A91;
+/* Layout */
+--container-page: 1400px;
 }
 
 :root {

@@ -32,52 +32,44 @@ const scrollToSection = (sectionId: string) => {
 
 <template>
   <div class="batman">
-    <!-- MENÚ DE NAVEGACIÓN -->
-    <nav class="extra-nav">
+
+    <nav class="extra-nav flex flex-col sm:flex-row justify-between px-3">
       <RouterLink to="/" aria-label="Volver a inicio">
         <House class="icon-home" />
       </RouterLink>
 
       <NavigationMenu>
-        <NavigationMenuList>
+        <NavigationMenuList class="flex flex-col sm:flex-row">
           <NavigationMenuItem>
-            <NavigationMenuLink
-              href="#"
-              :class="navigationMenuTriggerStyle()"
-              @click.prevent="scrollToSection('#')"
-            >
+           <a href="#" @click.prevent="scrollToSection('#')"/>
+            <NavigationMenuLink :class="[navigationMenuTriggerStyle(),'text-md hover:bg-red-950 hover:text-white transition-colors']">
               Portada
             </NavigationMenuLink>
+            <a/>
           </NavigationMenuItem>
 
           <NavigationMenuItem>
-            <NavigationMenuLink
-              href="#vehiculis"
-              :class="navigationMenuTriggerStyle()"
-              @click.prevent="scrollToSection('vehiculis')"
-            >
-              Vehículos Batman
+           <a href="#vehiculis" @click.prevent="scrollToSection('#')"/>
+            <NavigationMenuLink :class="[navigationMenuTriggerStyle(),'text-md hover:bg-red-950 hover:text-white transition-colors']">
+              Vehiculos
             </NavigationMenuLink>
+            <a/>
           </NavigationMenuItem>
 
-          <NavigationMenuItem>
-            <NavigationMenuLink
-              href="#videre"
-              :class="navigationMenuTriggerStyle()"
-              @click.prevent="scrollToSection('videre')"
-            >
-              Imágenes
+         <NavigationMenuItem>
+           <a href="#videre" @click.prevent="scrollToSection('#')"/>
+            <NavigationMenuLink :class="[navigationMenuTriggerStyle(),'text-md hover:bg-red-950 hover:text-white transition-colors']">
+              Imagenes
             </NavigationMenuLink>
+            <a/>
           </NavigationMenuItem>
 
-          <NavigationMenuItem>
-            <NavigationMenuLink
-              href="#contactus"
-              :class="navigationMenuTriggerStyle()"
-              @click.prevent="scrollToSection('contactus')"
-            >
+           <NavigationMenuItem>
+           <a href="#contactus" @click.prevent="scrollToSection('#')"/>
+            <NavigationMenuLink :class="[navigationMenuTriggerStyle(),'text-md hover:bg-red-950 hover:text-white transition-colors']">
               Contacto
             </NavigationMenuLink>
+            <a/>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
@@ -212,6 +204,7 @@ const scrollToSection = (sectionId: string) => {
 
 
 <style scoped>
+
 .batman {
   font-family: Arial, Helvetica, sans-serif;
   color: #171717;
@@ -234,13 +227,13 @@ const scrollToSection = (sectionId: string) => {
 }
 
 .icon-home {
-  color: black;
+  color: rgb(61, 0, 0);
   width: 2rem;
   height: 2rem;
 }
 
 .icon-home:hover {
-  color: rgb(255, 0, 179);
+  color: rgb(156, 0, 0);
 }
 
 .extra-nav :deep(a) {
@@ -277,6 +270,7 @@ const scrollToSection = (sectionId: string) => {
   top: 36%;
   left: 0;
   width: 100%;
+  margin: 0;
   text-align: center;
   font-size: 2rem;
   color: white;
@@ -292,15 +286,13 @@ const scrollToSection = (sectionId: string) => {
   scroll-margin-top: 5rem;
 }
 
-
 #vehiculis {
   width: 85%;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-
-/* TÍTULO */
+/* TÍTULO DE LA SECCIÓN */
 .vehiculis-titulus {
   width: 100%;
   min-height: 5.5rem;
@@ -319,70 +311,50 @@ const scrollToSection = (sectionId: string) => {
   margin: 0;
 }
 
-/* CONTENEDOR DE LAS TARJETAS */
+/* TRES COLUMNAS */
 .vehiculis-arca {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1.35fr 1fr;
   width: 100%;
+  align-items: stretch;
 }
 
-/* TARJETAS HORIZONTALES */
-
+/* TARJETAS */
 .item {
   width: 100%;
   max-width: none;
-  min-height: 240px;
+  min-width: 0;
+  min-height: 430px;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: space-between;
+  flex-direction: column;
   overflow: hidden;
-  border-radius: 0;
-  box-shadow: none;
 }
 
-
-/* COLORES Y ORDEN */
-
-/* Primera tarjeta: texto a la izquierda, imagen a la derecha */
-.unus .notitia {
+/* ORDEN DE LOS VEHÍCULOS */
+.unus {
   order: 1;
+  background-color: #dedede;
 }
 
-.unus img {
+.duo {
   order: 2;
+  background-color: #f7f7f7;
 }
 
-/* Segunda tarjeta: imagen a la izquierda, texto a la derecha */
-.duo .notitia {
-  order: 2;
+.tribus {
+  order: 3;
+  background-color: #dedede;
 }
 
-.duo img {
-  order: 1;
-}
-
-/* Tercera tarjeta: texto a la izquierda, imagen a la derecha */
-.tribus .notitia {
-  order: 1;
-}
-
-.tribus img {
-  order: 2;
-}
-
-
-/* TEXTO A LA IZQUIERDA */
-
+/* TEXTO */
 .notitia {
-  width: 50%;
-  flex: 0 0 50%;
+  width: 100%;
+  flex: 1 0 auto;
   min-width: 0;
-  padding: 1rem 1.5rem;
+  padding: 1rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -408,18 +380,19 @@ const scrollToSection = (sectionId: string) => {
   overflow-wrap: break-word;
 }
 
-.notitia {
-  width: 50%;
-  flex: 0 0 50%;
+.notitia > small {
+  font-weight: bold;
+  margin-top: 0.75rem;
+  text-align: center;
 }
 
+/* IMÁGENES DE LOS VEHÍCULOS */
 .item img {
   display: block;
-  width: 50%;
-  flex: 0 0 50%;
-  min-width: 0;
-  min-height: 240px;
-  align-self: stretch;
+  width: 100%;
+  height: 190px;
+  min-height: 190px;
+  flex: 0 0 190px;
   object-fit: cover;
 }
 
@@ -470,14 +443,26 @@ const scrollToSection = (sectionId: string) => {
   background-color: #e00030;
 }
 
-/* PORTADA EN PANTALLAS GRANDES */
-@media (min-width: 768px) {
-  .titulus > p {
-    display: block;
+/* TABLETS */
+@media (max-width: 900px) {
+  #vehiculis {
+    width: 95%;
   }
 
-  .titulus > h1 {
-    color: red;
+  .vehiculis-arca {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .notitia {
+    padding: 0.75rem;
+  }
+
+  .notitia h2 {
+    font-size: 1.4rem;
+  }
+
+  .notitia p {
+    font-size: 0.9rem;
   }
 }
 
@@ -502,72 +487,66 @@ const scrollToSection = (sectionId: string) => {
     padding: 3rem 0.5rem;
   }
 
+  #vehiculis {
+    width: 100%;
+  }
+
+  .vehiculis-arca {
+    grid-template-columns: 1fr;
+  }
+
   .item {
-    min-height: 180px;
+    min-height: 0;
   }
 
   .notitia {
-    padding: 0.5rem;
+    padding: 1.25rem;
   }
 
   .notitia h2 {
-    font-size: 1.3rem;
-  }
-
-  @media (max-width: 640px) {
-    #vehiculis {
-      max-width: 576px;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    #vehiculis {
-      max-width: 900px;
-    }
+    font-size: 1.5rem;
   }
 
   .notitia p {
-    font-size: 0.8rem;
-    line-height: 1.4;
+    font-size: 0.9rem;
+    line-height: 1.5;
   }
 
   .notitia > small {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
   }
 
   .item img {
-    min-height: 180px;
+    height: 220px;
+    min-height: 220px;
+    flex-basis: 220px;
   }
 
   .imagenes-section,
   .contacto-section {
     padding: 3rem 1rem;
+  }
 
-    .unus 
-    >img {
-      order: -1;
-    }
-
-    @media (max-width: 1024px) {
-      #vehiculis {
-        max-width: 1280px;
-      }
-    }
-
-    .item {
-      flex-direction: column;
-      height: 160px;
-    }
-
-    .vehiculis-arca {
-      flex-direction: row;
-    }
-    .notitia {
-      width: 90%;
-    }
-
+  .imagenes-arca {
+    grid-template-columns: 1fr;
   }
 }
+
+
+.duo {
+  display: flex;
+  flex-direction: column;
+}
+
+.duo img {
+  order: 1;
+}
+
+.duo .notitia {
+  order: 2;
+}
+
+
 </style>
 
 
