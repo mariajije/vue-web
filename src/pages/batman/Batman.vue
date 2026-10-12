@@ -1,7 +1,7 @@
-```vue
+
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
-import { House } from '@lucide/vue'
+import { House, Menu} from '@lucide/vue'
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -9,16 +9,12 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
+import Carrousel from '@/components/ui/Carrousel.vue'
+import CarrusImaginum from '@/components/ui/Carrousel.vue'
+import { Toggle } from '@/components/ui/toggle'
+import { onMounted, ref } from 'vue'
 
-import { Card, CardContent } from '@/components/ui/card'
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel'
-import Autoplay from 'embla-carousel-autoplay'
+
 
 const scrollToSection = (sectionId: string) => {
   if (sectionId === '#') {
@@ -41,10 +37,33 @@ const scrollToSection = (sectionId: string) => {
 
  const photos = ["justice", "arkham", "superman", "varios", "villana", "villano", "grupo", "robin", "anne", "joker", "resplandor", "cat", "gafas", "league", "fondoVerde"]; 
 
+ const videreMenu= ref<boolean>(true)
+
+  const handleResize = () => {  
+  if (window.innerWidth <640) {
+    videreMenu.value=false
+   } else {
+    videreMenu.value=true
+   }
+  }
+
+  onMounted (() => {
+
+ handleResize()
+ window.addEventListener('resize', handleResize)
+  })
+ 
 </script>
 
 <template>
   <div class="batman">
+
+    <Toggle
+    class="fixed top-2 right-4 z-50 bg-slate-500 sm:hidden"
+    @click="videreMenu = !videreMenu"
+    >
+    <Menu />
+    </Toggle>
 
     <nav class="extra-nav flex flex-col sm:flex-row justify-between px-3">
       <RouterLink to="/" aria-label="Volver a inicio">
@@ -213,34 +232,13 @@ const scrollToSection = (sectionId: string) => {
     </section>
 
     <section id="videre" class="flex w-full justify-center min-h-[60vh] lg:min-h-[95vh] items-center bg-gray-800"> 
-       <Carousel 
-       class="w-full max-w-md md:max-w-2xl lg:max-w-4xl"
-         :opts="{
-                dragFree: true,
-                loop: true
-                 }"
-                 :plugins="[Autoplay({
-                 delay: 2000,
-                 })]"
-       >
-    <CarouselContent>
-      <CarouselItem v-for="i in photos.length" :key="i">
-        <div class="p-1">
-          <Card class="bg-gray-800 border-none">
-            <CardContent class="flex aspect-6/4 items-center justify-center p-6">
-              <img 
-              :src="`/imagines/batman/${photos [i - 1] }.jpg`"
-              class="w-full h-full objective-cover"
-              :alt="`Imagen ${i} de Batman`"
-              /> 
-            </CardContent>
-          </Card>
-        </div>
-      </CarouselItem>
-    </CarouselContent>
-    <CarouselPrevious class: "hidden md:flex justify-center items-center bg-gray-800 text-white " />
-    <CarouselNext class: "hidden md:flex justify-center items-center bg-gray-800 text-white "/>
-  </Carousel>
+
+    <Carrousel 
+    :photos="photos"
+    basePath="/imagines/batman"
+    
+    />
+    
     </section>
   </div>
 </template>
