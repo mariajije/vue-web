@@ -10,6 +10,16 @@ import {
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
 
+import { Card, CardContent } from '@/components/ui/card'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel'
+import Autoplay from 'embla-carousel-autoplay'
+
 const scrollToSection = (sectionId: string) => {
   if (sectionId === '#') {
     window.scrollTo({
@@ -28,6 +38,9 @@ const scrollToSection = (sectionId: string) => {
     })
   }
 }
+
+ const photos = ["justice", "arkham", "superman", "varios", "villana", "villano", "grupo", "robin", "anne", "joker", "resplandor", "cat", "gafas", "league", "fondoVerde"]; 
+
 </script>
 
 <template>
@@ -197,6 +210,37 @@ const scrollToSection = (sectionId: string) => {
       >
         Más información sobre Batman
       </a>
+    </section>
+
+    <section id="videre" class="flex w-full justify-center min-h-[60vh] lg:min-h-[95vh] items-center bg-gray-800"> 
+       <Carousel 
+       class="w-full max-w-md md:max-w-2xl lg:max-w-4xl"
+         :opts="{
+                dragFree: true,
+                loop: true
+                 }"
+                 :plugins="[Autoplay({
+                 delay: 2000,
+                 })]"
+       >
+    <CarouselContent>
+      <CarouselItem v-for="i in photos.length" :key="i">
+        <div class="p-1">
+          <Card class="bg-gray-800 border-none">
+            <CardContent class="flex aspect-6/4 items-center justify-center p-6">
+              <img 
+              :src="`/imagines/batman/${photos [i - 1] }.jpg`"
+              class="w-full h-full objective-cover"
+              :alt="`Imagen ${i} de Batman`"
+              /> 
+            </CardContent>
+          </Card>
+        </div>
+      </CarouselItem>
+    </CarouselContent>
+    <CarouselPrevious class: "hidden md:flex justify-center items-center bg-gray-800 text-white " />
+    <CarouselNext class: "hidden md:flex justify-center items-center bg-gray-800 text-white "/>
+  </Carousel>
     </section>
   </div>
 </template>
