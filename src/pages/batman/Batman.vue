@@ -15,7 +15,6 @@ import { Toggle } from '@/components/ui/toggle'
 import { onMounted, ref } from 'vue'
 
 
-
 const scrollToSection = (sectionId: string) => {
   if (sectionId === '#') {
     window.scrollTo({
@@ -37,22 +36,51 @@ const scrollToSection = (sectionId: string) => {
 
  const photos = ["justice", "arkham", "superman", "varios", "villana", "villano", "grupo", "robin", "anne", "joker", "resplandor", "cat", "gafas", "league", "fondoVerde"]; 
 
- const videreMenu= ref<boolean>(true)
 
-  const handleResize = () => {  
-  if (window.innerWidth <640) {
-    videreMenu.value=false
-   } else {
-    videreMenu.value=true
-   }
+ const videreMenu = ref<boolean>(true)
+
+  type Coordinates = {
+  x: number
+  y: number
+}
+ const mousePositione = ref<Coordinates>({ x: 0, y: 0 })
+ function handleResize() {
+  if (window.innerWidth < 640) {
+    videreMenu.value = false
+  } else {
+    videreMenu.value = true
   }
+}
 
   onMounted (() => {
 
  handleResize()
  window.addEventListener('resize', handleResize)
   })
- 
+
+  onMounted(() => {
+    window.removeEventListener('resize', handleResize)
+  })
+
+  const cumMouseMove = (e: MouseEvent) => {
+  const rect = (e.target as HTMLElement).getBoundingClientRect()
+  
+  const centerX = rect.left + rect.width / 2
+  const centerY = rect.top + rect.height / 2
+
+  const mouseX = e.clientX - rect.left
+  const mouseY = e.clientY - rect.top
+
+   mousePositione.value = {
+    x: centerX - mouseX,
+    y: centerY - mouseY,
+  }
+}
+
+const cumMouseLeave = () => {
+  mousePositione.value = { x: 0, y: 0 }
+}
+
 </script>
 
 <template>
@@ -114,6 +142,13 @@ const scrollToSection = (sectionId: string) => {
       <div
         id="titulus-batman"
         class="titulus-img"
+        @mousemove="cumMouseMove"
+       @mouseleave="cumMouseLeave"
+       :style="{
+       backgroundPositionX: `calc(50% - ${mousePositione.x}px)`,
+       backgroundPositionY: `calc(50% - ${mousePositione.y}px)`,
+       transition: 'background-position 0.1s ease-out',
+       }"
       ></div>
 
       <p>
@@ -288,15 +323,15 @@ const scrollToSection = (sectionId: string) => {
 }
 
 .titulus-img {
-  min-height: 100vh;
   background-image: url('/imagines/batman/batman.jpg');
-  background-size: cover;
-  background-position: center;
+  background-size: 100% 100%;
+  background-position: center center;
+  aspect-ratio: 8/7;
 }
 
 .titulus > h1 {
   position: absolute;
-  top: 63%;
+  top: calc(100vw * 0.5);
   left: 0;
   width: 100%;
   margin: 0;
@@ -309,7 +344,7 @@ const scrollToSection = (sectionId: string) => {
 
 .titulus > p {
   position: absolute;
-  top: 36%;
+  top: calc(100vw * 0.25);
   left: 0;
   width: 100%;
   margin: 0;
@@ -363,16 +398,12 @@ const scrollToSection = (sectionId: string) => {
 
 /* TARJETAS */
 .item {
-  width: 100%;
-  max-width: none;
-  min-width: 0;
-  min-height: 430px;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  padding: 1.5rem 0;
+  height: 540px;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  align-items: center;
+  justify-content: space-around;
 }
 
 /* ORDEN DE LOS VEHÍCULOS */
